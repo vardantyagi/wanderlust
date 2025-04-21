@@ -18,6 +18,22 @@ used wrapAsync in place of trycatch block
 
 used ExpressError class to throw the customized errors
 
+## Review addition for individual listings
+
+One to many relationship between the listing and reviews is set
+
+adding review for the listings and deleting the reviews of any listing is done and, 
+
+if a listing is deleted then the related reviews are also deleted using findOneAndDelete middleware 
+
+One to many relationship between the listing and reviews is set
+
+## Code modularity using Express.Router()
+
+Express.Router() is used to make the code modular
+
+separate folder and files are made for listing and reviews
+
 ## Fixes to be done
 
 app.all('*',(req,res,next)=>{
