@@ -42,3 +42,18 @@ app.all('*',(req,res,next)=>{
 })
 
 sending post request from hoppscotch to create new listing
+
+## Added express-session and connect-flash
+
+express session is inplemented to track the user's activity and information on the different routes in asession
+
+connect-flash is used to flash some message in case of some failure or success to user and notify about the activity
+
+## user authentication implemented using passport.js
+
+user authentication is implemented using passport.js
+by passport , passport-local , passport-local-mongoose
+
+in authentication, user signup, login and logout are implemented seamlessly by passport.js and integrated with the routes like create new listing, update and delete route.
+
+if the user is lpgged in then only he can create, update, and delete the listings.

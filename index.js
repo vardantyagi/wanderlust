@@ -5,8 +5,28 @@ const port = 3000;
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate'); // for template boilerplating
-const listings = require('./routes/listing.js')
-const reviews = require('./routes/review.js')
+
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user.js');
+
+const listingRouter = require('./routes/listing.js');
+const reviewRouter = require('./routes/review.js');
+const userRouter = require('./routes/user.js');
+
+
+const sessionOptions = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        expires: Date.now() + 7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
+        httpOnly: true,
+    }
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,8 +48,36 @@ app.get('/',(req,res)=>{
     res.send('root is working...');
 })
 
-app.use('/listings',listings);
-app.use('/listings/:id/reviews',reviews);
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// app.get('/demouser',async(req,res)=>{
+//     let fakeUser = new User({
+//         email: "student@gmail.com",
+//         username: 'student',
+//     })
+
+//     let registeredUser =  await User.register(fakeUser,"helloworld");
+//     console.log(registeredUser);
+//     res.send(registeredUser);
+// })
+
+app.use((req,res,next)=>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
+app.use('/listings',listingRouter);
+app.use('/listings/:id/reviews',reviewRouter);
+app.use('/',userRouter);
 
 // app.all('*',(req,res,next)=>{
 //     // res.send("Hello");
@@ -48,3 +96,4 @@ app.listen(port,()=>{
 })
 
 // mongosh
+// npm i passport passport-local passport-local-mongoose
