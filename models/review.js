@@ -14,8 +14,14 @@ const reviewSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
 })
 
 const Review = mongoose.model('Review',reviewSchema);
 
 module.exports = Review;
+
+// db.users.findById('680b0bb89418147a465cf5a1')

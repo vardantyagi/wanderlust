@@ -49,11 +49,13 @@ express session is inplemented to track the user's activity and information on t
 
 connect-flash is used to flash some message in case of some failure or success to user and notify about the activity
 
-## user authentication implemented using passport.js
+## user authentication and authorization implemented using passport.js
 
 user authentication is implemented using passport.js
 by passport , passport-local , passport-local-mongoose
 
 in authentication, user signup, login and logout are implemented seamlessly by passport.js and integrated with the routes like create new listing, update and delete route.
 
-if the user is lpgged in then only he can create, update, and delete the listings.
+if the user is logged in then only he can create, update, and delete the listings.
+
+if a user has createrd posted any review then only he can delete it and anso if any listing is created by ony user then, only he can remove that listing.
