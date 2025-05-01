@@ -58,4 +58,16 @@ in authentication, user signup, login and logout are implemented seamlessly by p
 
 if the user is logged in then only he can create, update, and delete the listings.
 
-if a user has createrd posted any review then only he can delete it and anso if any listing is created by ony user then, only he can remove that listing.
+if a user has createrd posted any review then only he can delete it and also if any listing is created by ony user then, only he can remove that listing.
+
+## Implemented Upload Image feature using multer and cloudinary
+
+Instead of adding image url, file from system upload is intregrated using multure and cloudinary as cloud storage
+
+multer is used to parse the fil (multipart/form-data) data from form so that backend can read it.
+
+Cloudinary is used as a cloud storage to store the listing image.
+
+The url of the image is send from cloudinary (req.file.path) to be stored in mongoDB.
+
+<!-- implemented full stack framework using MVC framework (to mension in resume) -->

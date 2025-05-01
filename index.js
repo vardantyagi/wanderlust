@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV != 'production'){
+    require('dotenv').config(); // to access .env file in backend
+}
+console.log(process.env.CLOUD_NAME);
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,14 +13,13 @@ const ejsMate = require('ejs-mate'); // for template boilerplating
 
 const session = require('express-session');
 const flash = require('connect-flash');
-const passport = require('passport');
+const passport = require('passport'); // authentication and authorization
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 
 const listingRouter = require('./routes/listing.js');
 const reviewRouter = require('./routes/review.js');
 const userRouter = require('./routes/user.js');
-
 
 const sessionOptions = {
     secret: "mysupersecretcode",
