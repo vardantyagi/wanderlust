@@ -4,9 +4,9 @@ const { listingSchema, reviewSchema } = require("./schema");
 const ExpressError = require("./utils/ExpressError");
 
 module.exports.isLoggedIn = (req,res,next)=>{
-    console.log('middleware 22222');
     
-    console.log(req.path," ",req.originalUrl);
+    // console.log(req.path," ",req.originalUrl);
+
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.originalUrl;
         req.flash('error','You must be logged in to create listing!')
@@ -36,12 +36,10 @@ module.exports.isOwner = async (req,res,next)=>{
 }
 
 module.exports.validateListing = (req,res,next)=>{
-    console.log("line 35",req.body);
     
     let result = listingSchema.validate(req.body);
     const {error} = result;
-    console.log("line 37 error,",error);
-    console.log("line 38 result,",result);
+    
     if(error){
         let errMsg = error.details.map((e)=>e.message).join(",");
         throw new ExpressError(400,errMsg);
@@ -53,12 +51,10 @@ module.exports.validateListing = (req,res,next)=>{
 // Schema Validation Middleware
 
 module.exports.validateReview = (req,res,next)=>{
-    console.log("line 51",req.body);
     
     let result = reviewSchema.validate(req.body);
     const {error} = result;
-    console.log("line 55 error,",error);
-    console.log("line 56 result,",result);
+   
     if(error){
         let errMsg = error.details.map((e)=>e.message).join(",");
         throw new ExpressError(400,errMsg);

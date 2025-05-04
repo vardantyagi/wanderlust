@@ -104,3 +104,10 @@ body{
 .card-body{
     padding-left: 0 !important;
 }
+
+/* for map */
+
+#map {
+    height: 400px;
+    width: 80vw;
+}

@@ -34,6 +34,7 @@ router
   .put(
     isLoggedIn,
     isOwner,
+    upload.single('image'),
     validateListing,
     wrapAsync(listingController.updateListing)
   )
@@ -51,5 +52,8 @@ router.get(
   isOwner,
   wrapAsync(listingController.renderEditForm)
 );
+
+router.post('/search',
+  wrapAsync(listingController.searchListings))
 
 module.exports = router;

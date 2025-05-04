@@ -68,6 +68,8 @@ multer is used to parse the fil (multipart/form-data) data from form so that bac
 
 Cloudinary is used as a cloud storage to store the listing image.
 
-The url of the image is send from cloudinary (req.file.path) to be stored in mongoDB.
+The url of the image is send from cloudinary (req.file.path) to be stored in mongoDB.Can also edit image.
+
+# Database deployed on mongo atlas and project on render
 
 <!-- implemented full stack framework using MVC framework (to mension in resume) -->
